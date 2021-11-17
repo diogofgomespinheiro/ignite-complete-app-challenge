@@ -1,28 +1,16 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { RouterContext } from 'next/dist/next-server/lib/router-context';
 
+import { mockUseRouter } from '../utils/mockRouter';
 import Header from '../../components/Header';
 
-const mockedPush = jest.fn();
-let RouterWrapper;
+jest.mock('next/router', () => ({
+  __esModule: true,
+  useRouter: () => ({
+    push: jest.fn(),
+  }),
+}));
 
 describe('Header', () => {
-  beforeAll(() => {
-    mockedPush.mockImplementation(() => Promise.resolve());
-    const MockedRouterContext = RouterContext as React.Context<unknown>;
-    RouterWrapper = ({ children }): JSX.Element => {
-      return (
-        <MockedRouterContext.Provider
-          value={{
-            push: mockedPush,
-          }}
-        >
-          {children}
-        </MockedRouterContext.Provider>
-      );
-    };
-  });
-
   it('should be able to render logo', () => {
     render(<Header />);
 
@@ -30,18 +18,13 @@ describe('Header', () => {
   });
 
   it('should be able to navigate to home page after a click', () => {
-    render(<Header />, {
-      wrapper: RouterWrapper,
-    });
+    const { push: pushSpy } = mockUseRouter({});
+    render(<Header />);
 
     const secondLink = screen.getByAltText('logo');
 
     fireEvent.click(secondLink);
 
-    expect(mockedPush).toHaveBeenCalledWith(
-      '/',
-      expect.anything(),
-      expect.anything()
-    );
+    expect(pushSpy).toHaveBeenCalledWith('/');
   });
 });

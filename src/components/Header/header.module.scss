@@ -1,1 +1,15 @@
-// TODO
+@import '../../styles/common.module.scss';
+
+.container {
+  @include outerContainer;
+}
+
+.content {
+  @include innerContainer;
+  margin: 0 auto;
+  padding: 3.5rem 0;
+
+  a {
+    cursor: pointer;
+  }
+}
