@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
-import Image from 'next/image';
 import Prismic from '@prismicio/client';
 import ApiSearchResponse from '@prismicio/client/types/ApiSearchResponse';
 
+import TextIcon from '../components/TextIcon';
 import { getPrismicClient, fetcher } from '../services';
 import { formatDate } from '../utils';
 
@@ -67,24 +67,11 @@ export default function Home({ postsPagination }: HomeProps) {
                   <h4>{post.data.title}</h4>
                   <p>{post.data.subtitle}</p>
                   <div className={styles.infoContainer}>
-                    <div>
-                      <Image
-                        src="/assets/calendar.svg"
-                        alt="calendar"
-                        height={20}
-                        width={20}
-                      />
-                      <span>{formatDate(post.firstPublicationDate)}</span>
-                    </div>
-                    <div>
-                      <Image
-                        src="/assets/user.svg"
-                        alt="person"
-                        height={20}
-                        width={20}
-                      />
-                      <span>{post.data.author}</span>
-                    </div>
+                    <TextIcon
+                      icon="calendar"
+                      text={formatDate(post.firstPublicationDate)}
+                    />
+                    <TextIcon icon="user" text={post.data.author} />
                   </div>
                 </div>
               </a>

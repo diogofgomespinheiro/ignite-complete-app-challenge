@@ -2,7 +2,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { GetStaticPropsContext } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 
-import { mockUseRouter } from '../utils/mockRouter';
+import { mockUseRouter } from '../../utils';
 import { getPrismicClient } from '../../services/prismic';
 import App, { getStaticProps } from '../../pages';
 

@@ -1,4 +1,4 @@
-@import '../styles/common.module.scss';
+@import '../styles/common.scss';
 
 .wrapper {
   @include outerContainer;
@@ -50,7 +50,6 @@
     font-size: 1.75rem;
     font-weight: 700;
     line-height: 2.125rem;
-    color: var(--heading-text-color);
 
     transition: color 0.2s ease;
   }
@@ -64,20 +63,5 @@
 }
 
 .infoContainer {
-  display: flex;
-  align-items: center;
-
-  & > div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    & + div {
-      margin-left: 1.5rem;
-    }
-
-    span {
-      margin-left: 0.5rem;
-    }
-  }
+  @include flexCenteredVertical;
 }

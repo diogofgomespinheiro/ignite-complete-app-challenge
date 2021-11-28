@@ -1,4 +1,4 @@
-@import '../../styles/common.module.scss';
+@import '../../styles/common.scss';
 
 .container {
   @include outerContainer;
@@ -9,7 +9,7 @@
   margin: 0 auto;
   padding: 3.5rem 0;
 
-  a {
+  img {
     cursor: pointer;
   }
 }

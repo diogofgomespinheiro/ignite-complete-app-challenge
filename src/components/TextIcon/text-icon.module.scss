@@ -1,0 +1,13 @@
+@import '../../styles/common.scss';
+
+.container {
+  @include flexCentered;
+
+  & + div {
+    margin-left: 1.5rem;
+  }
+
+  span {
+    margin-left: 0.5rem;
+  }
+}
